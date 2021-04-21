@@ -9,11 +9,11 @@ export class Item {
         this.quality = quality;
     }
 
-    decreaseSellIn() {
+    updateSellIn() {
         this.sellIn--;
     }
 
-    decreaseQuality() {
+    calculateQuality() {
         let quality = this.quality;
 
         if(this.sellIn <= 0) {
@@ -23,14 +23,26 @@ export class Item {
             quality--;
         }
 
-        // The Quality of an item is never negative
-        this.quality = Math.max(0, quality);
+        this.updateQuality(quality);
     }
 
-    updateQuality() {
+    updateQuality(quality) {
+        // The Quality of an item is never negative
+        //  The Quality of an item is never more than 50
+        this.quality = Math.min(Math.max(0, quality), 50);
+    }
+
+    update() {
         // At the end of each day our system lowers both values for every item
-        this.decreaseQuality();
-        this.decreaseSellIn();
+        this.calculateQuality();
+        this.updateSellIn();
+    }
+}
+
+export class AgedBrie extends Item {
+    // "Aged Brie" actually increases in Quality the older it gets
+    calculateQuality() {
+        this.updateQuality(this.quality + 1);
     }
 }
 
@@ -43,7 +55,7 @@ export class GildedRose {
 
     updateQuality() {
         for (const item of this.items) {
-            item.updateQuality();
+            item.update();
         }
     }
 }
