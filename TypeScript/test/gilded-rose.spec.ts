@@ -6,6 +6,11 @@ describe('Gilded Rose', function () {
     describe('updateQuality', function() {
         describe('Classical products', function() {
 
+            it('should be able to create an empty new GildedRose', () => {
+                const gildedRose = new GildedRose();
+                expect(gildedRose.items).to.eql([]);
+            })
+
             // At the end of each day our system lowers both values for every item
             it('should decrease quality', () => {
                 const gildedRose = new GildedRose([
