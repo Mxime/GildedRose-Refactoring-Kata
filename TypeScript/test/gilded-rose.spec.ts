@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Item, GildedRose, AgedBrie, Sulfuras, BackstagePass } from '../app/gilded-rose';
+import { Item, GildedRose, AgedBrie, Sulfuras, BackstagePass, Conjured } from '../app/gilded-rose';
 
 describe('Gilded Rose', function () {
 
@@ -136,7 +136,7 @@ describe('Gilded Rose', function () {
             // "Conjured" items degrade in Quality twice as fast as normal items
             it('should decrease quality 2x faster as normal items', () => {
                 const gildedRose = new GildedRose([
-                    new Item("Conjured Mana Cake", 3, 6)
+                    new Conjured("Conjured Mana Cake", 3, 6)
                 ]);
                 gildedRose.updateQuality();
                 expect(gildedRose.items[0].sellIn).to.equal(2);

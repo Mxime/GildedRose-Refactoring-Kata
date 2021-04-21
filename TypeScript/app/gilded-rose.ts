@@ -68,6 +68,13 @@ export class BackstagePass extends Item {
     }
 }
 
+export class Conjured extends Item {
+    calculateQuality() {
+        // "Conjured" items degrade in Quality twice as fast as normal items
+        this.updateQuality(this.quality - 2);
+    }
+}
+
 export class GildedRose {
     items: Array<Item>;
 
