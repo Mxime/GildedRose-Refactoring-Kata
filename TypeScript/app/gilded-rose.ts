@@ -46,6 +46,11 @@ export class AgedBrie extends Item {
     }
 }
 
+export class Sulfuras extends Item {
+    // "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
+    update() {}
+}
+
 export class GildedRose {
     items: Array<Item>;
 

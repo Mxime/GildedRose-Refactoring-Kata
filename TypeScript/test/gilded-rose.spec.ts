@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Item, GildedRose, AgedBrie } from '../app/gilded-rose';
+import { Item, GildedRose, AgedBrie, Sulfuras } from '../app/gilded-rose';
 
 describe('Gilded Rose', function () {
 
@@ -81,7 +81,7 @@ describe('Gilded Rose', function () {
             // "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
             it('should not decrease neither quality nor sellIn', () => {
                 const gildedRose = new GildedRose([
-                    new Item("Sulfuras, Hand of Ragnaros", 0, 20)
+                    new Sulfuras("Sulfuras, Hand of Ragnaros", 0, 20)
                 ]);
                 const items = gildedRose.updateQuality();
                 expect(gildedRose.items[0].sellIn).to.equal(0);
