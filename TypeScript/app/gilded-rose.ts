@@ -51,6 +51,23 @@ export class Sulfuras extends Item {
     update() {}
 }
 
+export class BackstagePass extends Item {
+    calculateQuality() {
+        // Quality drops to 0 after the concert
+        if(this.sellIn <= 0) {
+            this.updateQuality(0);
+        // Quality increases by 3 when there are 5 days or less
+        } else if(this.sellIn < 5) {
+            this.updateQuality(this.quality + 3);
+        // Quality increases by 2 when there are 10 days or less
+        } else if(this.sellIn < 10) {
+            this.updateQuality(this.quality + 2);
+        }
+        // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
+        else this.updateQuality(this.quality + 1);
+    }
+}
+
 export class GildedRose {
     items: Array<Item>;
 

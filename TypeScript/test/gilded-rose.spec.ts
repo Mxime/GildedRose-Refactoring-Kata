@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Item, GildedRose, AgedBrie, Sulfuras } from '../app/gilded-rose';
+import { Item, GildedRose, AgedBrie, Sulfuras, BackstagePass } from '../app/gilded-rose';
 
 describe('Gilded Rose', function () {
 
@@ -94,9 +94,9 @@ describe('Gilded Rose', function () {
             // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
             it('should increase quality as its SellIn value approaches', () => {
                 const gildedRose = new GildedRose([
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20)
+                    new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 15, 20)
                 ]);
-                const items = gildedRose.updateQuality();
+                gildedRose.updateQuality();
                 expect(gildedRose.items[0].sellIn).to.equal(14);
                 expect(gildedRose.items[0].quality).to.equal(21);
             })
@@ -104,9 +104,9 @@ describe('Gilded Rose', function () {
             // Quality increases by 2 when there are 10 days or less
             it('should increase quality 2x faster when there are 10 days or less', () => {
                 const gildedRose = new GildedRose([
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 8, 20)
+                    new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 8, 20)
                 ]);
-                const items = gildedRose.updateQuality();
+                gildedRose.updateQuality();
                 expect(gildedRose.items[0].sellIn).to.equal(7);
                 expect(gildedRose.items[0].quality).to.equal(22);
             })
@@ -114,9 +114,9 @@ describe('Gilded Rose', function () {
             // Quality increases by 3 when there are 5 days or less
             it('should increase quality 3x faster when there are 5 days or less', () => {
                 const gildedRose = new GildedRose([
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 4, 20)
+                    new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 4, 20)
                 ]);
-                const items = gildedRose.updateQuality();
+                gildedRose.updateQuality();
                 expect(gildedRose.items[0].sellIn).to.equal(3);
                 expect(gildedRose.items[0].quality).to.equal(23);
             })
@@ -124,9 +124,9 @@ describe('Gilded Rose', function () {
             // Quality drops to 0 after the concert
             it('should drop quality to zero when sellIn is zero or negative', () => {
                 const gildedRose = new GildedRose([
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)
+                    new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 0, 20)
                 ]);
-                const items = gildedRose.updateQuality();
+                gildedRose.updateQuality();
                 expect(gildedRose.items[0].sellIn).to.equal(-1);
                 expect(gildedRose.items[0].quality).to.equal(0);
             })
@@ -138,7 +138,7 @@ describe('Gilded Rose', function () {
                 const gildedRose = new GildedRose([
                     new Item("Conjured Mana Cake", 3, 6)
                 ]);
-                const items = gildedRose.updateQuality();
+                gildedRose.updateQuality();
                 expect(gildedRose.items[0].sellIn).to.equal(2);
                 expect(gildedRose.items[0].quality).to.equal(4);
             })
